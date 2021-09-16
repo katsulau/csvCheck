@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+
+mainClassName = 'csvCheck.CsvChecker'
+
+
+group 'experimentJava'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.projectlombok:lombok:1.18.2'
+    compile 'com.opencsv:opencsv:4.2'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+}
