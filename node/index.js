@@ -87,7 +87,7 @@ exports.handler = async (event) => {
         //   console.log(`ログ取得from：${startDate.getFullYear()}/${startDate.getMonth() + 1}/${startDate.getDate()} ${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`);
 
         /* 終了日：toをarrにセット */
-        let endDate = new Date(targetDate);
+        let endDate = new Date(startDate);
         endDate.setFullYear(startDate.getFullYear());
         endDate.setMonth(startDate.getMonth());
         endDate.setDate(startDate.getDate());
@@ -96,7 +96,6 @@ exports.handler = async (event) => {
         endDate.setSeconds(59);
         endDate.setMilliseconds(999);
         //   console.log(`ログ取得to：${endDate.getFullYear()}/${endDate.getMonth() + 1}/${endDate.getDate()} ${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`);
-
 
         yyyy = startDate.getFullYear();
         /* 1~9月は01~09、10月~12月は10~12で表記するよう設定 */
