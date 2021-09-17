@@ -28,8 +28,6 @@ public class CsvChecker {
 
             List<TestResult> testResultList = csvFileDao.read(reader);
 
-            System.out.println(testResultList.size());
-
             List<CheckResult> checkResultList =
                     testResultList.stream().map(testResult -> {
 
@@ -43,14 +41,42 @@ public class CsvChecker {
                             e.printStackTrace();
                         }
 
-                        LocalDateTime targetDateTime = LocalDateTime.ofInstant(resultDate.toInstant(), ZoneId.systemDefault())
+                        LocalDateTime executionDateTime = LocalDateTime.ofInstant(resultDate.toInstant(), ZoneId.systemDefault())
                                 .plusHours(9);
 
-                        System.out.println(targetDateTime);
+                        LocalDateTime targetExtractDateTime = executionDateTime.minusDays(30);
+
+                        String trimmedTargetDateTime = targetExtractDateTime.toString().substring(0, 10);
 
                         CheckResult checkResult = new CheckResult();
+
+                        if (trimmedTargetDateTime.equals(testResult.getTargetExtractDate())) {
+                            checkResult.setIsCorrectExtractDate("◯");
+                        } else {
+                            checkResult.setIsCorrectExtractDate("✕");
+                        }
+
+                        String trimmedUtcStartDate = testResult.getUtcStartDate().substring(0, 10);
+
+                        LocalDateTime utcStartDate = executionDateTime.minusDays(31);
+
+                        String utcStartDateString = utcStartDate.toString().substring(0, 10);
+
+                        if (trimmedUtcStartDate.equals(utcStartDateString)) {
+                            checkResult.setIsCorrectUtcStartDate("◯");
+                        } else {
+                            checkResult.setIsCorrectUtcStartDate("✕");
+                        }
+
+                        String trimmedUtcEndDate = testResult.getUtcEndDate().substring(0, 10);
+
+                        if (trimmedUtcEndDate.equals(trimmedTargetDateTime)) {
+                            checkResult.setIsCorrectUtcEndDate("◯");
+                        } else {
+                            checkResult.setIsCorrectUtcEndDate("✕");
+                        }
+
                         checkResult.setExecutionDateTime(testResult.getExecutionDateTime());
-                        checkResult.getExecutionDateTime();
                         checkResult.setTargetExtractDate(testResult.getTargetExtractDate());
                         checkResult.setUtcStartDate(testResult.getUtcStartDate());
                         checkResult.setUtcEndDate(testResult.getUtcEndDate());

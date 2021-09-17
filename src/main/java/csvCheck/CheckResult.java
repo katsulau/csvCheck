@@ -29,4 +29,16 @@ public class CheckResult {
     @CsvBindByName(column = "utcEndDate")
     @CsvBindByPosition(position = 3)
     private String utcEndDate;
+
+    @CsvBindByName(column = "isCorrectExtractDate")
+    @CsvBindByPosition(position = 4)
+    private String isCorrectExtractDate;
+
+    @CsvBindByName(column = "isCorrectUtcStartDate")
+    @CsvBindByPosition(position = 5)
+    private String isCorrectUtcStartDate;
+
+    @CsvBindByName(column = "isCorrectUtcEndDate")
+    @CsvBindByPosition(position = 6)
+    private String isCorrectUtcEndDate;
 }
