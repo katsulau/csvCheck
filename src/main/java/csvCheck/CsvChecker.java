@@ -22,7 +22,7 @@ public class CsvChecker {
 
         ItemFileDao csvFileDao = new ItemFileDao();
 
-        try (Reader reader = Files.newBufferedReader(Paths.get("/Users/Shared/develop/projects/study/csvCheck/src/main/resources/test_result_202109161853.csv"));
+        try (Reader reader = Files.newBufferedReader(Paths.get("/Users/Shared/develop/projects/study/csvCheck/src/main/resources/test_result_202109171155.csv"));
              Writer writer = Files.newBufferedWriter(Paths.get("item2.csv"));
         ) {
 
