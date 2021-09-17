@@ -74,7 +74,7 @@ exports.handler = async (event) => {
         let now = new Date(targetDate);
         now.setTime(now.getTime() + 1000*60*60*9);// JSTに変換);
         let yyyy,mm,dd;
-        //   console.log(`現在時間(日本時間)は`, now);
+        console.log(now);
 
         /* 開始日：fromをarrにセット */
         let startDate = new Date(targetDate);
@@ -84,7 +84,7 @@ exports.handler = async (event) => {
         startDate.setMinutes(0);
         startDate.setSeconds(0);
         startDate.setMilliseconds(0);
-        //   console.log(`ログ取得from：${startDate.getFullYear()}/${startDate.getMonth() + 1}/${startDate.getDate()} ${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`);
+        console.log(`ログ取得from：${startDate.getFullYear()}/${startDate.getMonth() + 1}/${startDate.getDate()} ${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}.${startDate.getMilliseconds()}`);
 
         /* 終了日：toをarrにセット */
         let endDate = new Date(startDate);
@@ -95,7 +95,8 @@ exports.handler = async (event) => {
         endDate.setMinutes(59);
         endDate.setSeconds(59);
         endDate.setMilliseconds(999);
-        //   console.log(`ログ取得to：${endDate.getFullYear()}/${endDate.getMonth() + 1}/${endDate.getDate()} ${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`);
+        console.log(`ログ取得to：${endDate.getFullYear()}/${endDate.getMonth() + 1}/${endDate.getDate()} ${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}.${endDate.getMilliseconds()}`);
+
 
         yyyy = startDate.getFullYear();
         /* 1~9月は01~09、10月~12月は10~12で表記するよう設定 */
@@ -107,8 +108,8 @@ exports.handler = async (event) => {
         // リクエストはUTCで送る必要があるため、マイナス9時間する。
         startDate.setHours(startDate.getHours() - 9);
         endDate.setHours(endDate.getHours() - 9);
-        //   console.log(`出力リクエストとして送る開始日時は`, startDate);
-        //   console.log(`出力リクエストとして送る終了日時は`, endDate);
+        console.log(startDate);
+        console.log(endDate);
 
         arr.push(startDate.getTime());
         arr.push(endDate.getTime());
